@@ -85,6 +85,8 @@ function connect() {
     }
     port.onReceiveError = error => {
       console.error(error);
+      document.querySelector("#connect").style = "visibility: initial";
+      port.disconnect();
     };
   });
 }
@@ -103,17 +105,6 @@ function send(string) {
 };
 
 window.onload = _ => {
-  serial.getPorts().then(ports => {
-    if (ports.length == 0) {
-      console.log('No existing device found.');
-      document.querySelector("#connect").style = "visibility: initial";
-    } else {
-      console.log('Connecting...');
-      port = ports[0];
-      connect();
-    }
-  });
-
   document.querySelector("#connect").onclick = function() {
     serial.requestPort().then(selectedPort => {
       port = selectedPort;
@@ -127,8 +118,9 @@ window.onload = _ => {
     send(source);
   }
 }
+
 </script>
- <button id="connect" style="visibility: hidden">Connect To WebUSB Device</button>
+ <button id="connect" style="visibility: initial">Connect To WebUSB Device</button>
  <br><br><label for="title">Sender: </label> <br>
  <textarea id="editor", rows="25" cols="80" id="source">WebUSB!</textarea>
  <br><button id="submit">Send</button>
