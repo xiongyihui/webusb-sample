@@ -48,25 +48,13 @@ var serial = {};
           }
         })
         .then(() => this.device_.claimInterface(0))
-        .then(() => this.device_.controlTransferOut({
-            'requestType': 'class',
-            'recipient': 'interface',
-            'request': 0x22,
-            'value': 0x01,
-            'index': 0x02}))
         .then(() => {
           readLoop();
         });
   };
 
   serial.Port.prototype.disconnect = function() {
-    return this.device_.controlTransferOut({
-            'requestType': 'class',
-            'recipient': 'interface',
-            'request': 0x22,
-            'value': 0x00,
-            'index': 0x02})
-        .then(() => this.device_.close());
+    return this.device_.close();
   };
 
   serial.Port.prototype.send = function(data) {
