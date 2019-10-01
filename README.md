@@ -2,7 +2,7 @@
 
 Use with Zephyr webusb sample: https://github.com/zephyrproject-rtos/zephyr/tree/master/samples/subsys/usb/webusb
 
-Can be accessed with address: https://finikorg.github.io/webusb-serial/
+Can be accessed with address: https://finikorg.github.io/webusb-sample/
 
 Usage
 =====
